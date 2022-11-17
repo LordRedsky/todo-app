@@ -16,4 +16,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+/* ALERT */
+.alert-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 490px;
+  height: 58px;
+  padding: 19px 39px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.alert {
+  display: flex;
+  gap: 10px;
+}
+</style>

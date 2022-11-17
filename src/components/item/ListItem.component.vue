@@ -29,4 +29,66 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+/* LIST ITEM */
+.list-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.list-items .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  width: 1000px;
+  height: 50px;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.list-items .item .fa-square-check {
+  font-size: 20px;
+  color: #16abf8;
+}
+
+.list-items .item .fa-square {
+  font-size: 20px;
+  color: #c7c7c7;
+}
+
+.list-items .item .fa-trash-can {
+  color: #888888;
+}
+
+.detail-item {
+  display: flex;
+  margin-right: auto;
+
+  width: 100%x;
+  height: 52px;
+
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-item .check {
+  text-decoration: line-through;
+  color: #888888;
+}
+
+.detail-item .fa-circle {
+  font-size: 10px;
+}
+
+.detail-item .fa-pencil {
+  color: #c4c4c4;
+}
+</style>
