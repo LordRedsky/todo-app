@@ -3,6 +3,7 @@ import { mapWritableState } from "pinia";
 import ModalComponent from "../components/modal/Modal.component.vue";
 import useFormInputStore from "../stores/formInput";
 import useTodoStore from "../stores/todo";
+import useActivityStore from "../stores/activity";
 
 export default {
   name: "Activity",
@@ -16,6 +17,7 @@ export default {
   computed: {
     ...mapWritableState(useFormInputStore, ["isOpen"]),
     ...mapWritableState(useTodoStore, ["todo_lists"]),
+    ...mapWritableState(useActivityStore, ["activities"]),
   },
   methods: {
     sortDropdownMenuHandler() {
@@ -27,6 +29,9 @@ export default {
     },
   },
   components: { ModalComponent },
+  created() {
+    this.activities = [];
+  },
 };
 </script>
 

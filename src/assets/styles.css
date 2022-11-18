@@ -9,7 +9,8 @@ body {
 
 .container {
   position: relative;
-    padding: 10px 220px;
+  padding: 10vh 23%;
+  /* max-width: 70%; */
 }
 
 .empty-content {
@@ -55,6 +56,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+  /* max-width: 70%; */
 }
 
 .todo-header .btn-add {

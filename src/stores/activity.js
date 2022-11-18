@@ -11,20 +11,32 @@ export default defineStore('activity', {
             {
                 id: 1,
                 title: "Bertemu Dokter",
-                created_at: "Fri Nov 18 2022 09:47:13 GMT+0800 (Central Indonesia Time)",
-                updated_at: "Fri Nov 18 2022 09:47:13 GMT+0800 (Central Indonesia Time)"
+                created_at: "Fri Nov 14 2022 09:47:13 GMT+0800 (Central Indonesia Time)",
+                updated_at: "Fri Nov 14 2022 09:47:13 GMT+0800 (Central Indonesia Time)"
             },
             {
                 id: 2,
                 title: "Bertemu Teman",
-                created_at: "Fri Nov 19 2022 09:50:13 GMT+0800 (Central Indonesia Time)",
-                updated_at: "Sat Nov 19 2022 09:50:13 GMT+0800 (Central Indonesia Time)"
+                created_at: "Fri Nov 15 2022 09:50:13 GMT+0800 (Central Indonesia Time)",
+                updated_at: "Sat Nov 15 2022 09:50:13 GMT+0800 (Central Indonesia Time)"
             },
             {
                 id: 3,
                 title: "Beli Beras",
-                created_at: "Sun Nov 20 2022 09:50:13 GMT+0800 (Central Indonesia Time)",
-                updated_at: "Sun Nov 20 2022 09:50:13 GMT+0800 (Central Indonesia Time)"
+                created_at: "Sun Nov 16 2022 09:50:13 GMT+0800 (Central Indonesia Time)",
+                updated_at: "Sun Nov 16 2022 09:50:13 GMT+0800 (Central Indonesia Time)"
+            },
+            {
+                id: 4,
+                title: "Beli Hp",
+                created_at: "Sun Nov 17 2022 19:50:13 GMT+0800 (Central Indonesia Time)",
+                updated_at: "Sun Nov 17 2022 19:50:13 GMT+0800 (Central Indonesia Time)"
+            },
+            {
+                id: 5,
+                title: "Beli Kue",
+                created_at: "Sun Nov 18 2022 19:50:13 GMT+0800 (Central Indonesia Time)",
+                updated_at: "Sun Nov 18 2022 19:50:13 GMT+0800 (Central Indonesia Time)"
             }
         ],
         input_activity: {
@@ -42,7 +54,10 @@ export default defineStore('activity', {
 
             })
 
-            this.activities = this.raw_data.reverse()
+            for (let i = this.raw_data.length - 1; i >= 0; i--) {
+                const data = this.raw_data[i]
+                this.activities.push(data)
+            }
             // console.log(this.activities);
         },
         // async getActivity() {
@@ -60,6 +75,24 @@ export default defineStore('activity', {
         // },
 
         //* CREATE ACTIVITY
+        createActivity() {
+            let id = 0;
+            if (this.raw_data.length > 0) {
+                id = this.raw_data[this.raw_data.length - 1].id;
+                console.log(this.raw_data[this.raw_data.length - 1].id, "<<<ID");
+            }
+
+            const data = {
+                id: (id += 1),
+                title: "New Activity",
+                created_at: new Date(),
+                updated_at: new Date(),
+            };
+
+            this.raw_data.push(data)
+            this.activities = [];
+            this.getActivity();
+        }
         // async createActivity() {
         //     try {
         //         const response = await axios.post(`${BASE_URL}/activity-groups?email=${email}`, this.input_activity)

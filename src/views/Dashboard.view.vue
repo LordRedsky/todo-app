@@ -7,17 +7,19 @@ export default {
   name: "Dashboard",
   components: { ActivityCardComponent },
   methods: {
-    ...mapActions(useActivityStore, ["getActivity"]),
+    ...mapActions(useActivityStore, ["getActivity", "createActivity"]),
+    createNewActivityHandler() {
+      this.createActivity();
+    },
   },
   computed: {
     ...mapWritableState(useActivityStore, ["activities"]),
   },
 
   Created() {
+    this.activities = [];
     this.getActivity();
   },
-
-
 };
 </script>
 
@@ -25,7 +27,7 @@ export default {
   <div class="container">
     <div class="todo-header">
       <h1>Activity</h1>
-      <button class="btn btn-add">
+      <button class="btn btn-add" @click.prevent="createNewActivityHandler">
         <i class="fa-regular fa-plus"></i>
         Tambah
       </button>

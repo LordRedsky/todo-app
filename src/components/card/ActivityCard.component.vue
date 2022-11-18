@@ -11,9 +11,8 @@ export default {
     ...mapActions(useActivityStore, ["getActivity"]),
     moveToActivity(id) {
       this.$router.push({ path: `/activity/${id}` });
-      this.activities = [];
+      // this.activities = this.activities.reverse();
     },
-    
   },
 
   created() {
@@ -45,13 +44,18 @@ export default {
 <style scoped>
 .activity-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
   /* background-color: red; */
   gap: 15px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+  /* justify-content: flex-start; */
 }
 
 .activity-card-container {
-  width: 235px;
+  max-width: 100%;
+  /* width: 235px; */
   height: 235px;
   display: flex;
   flex-direction: column;

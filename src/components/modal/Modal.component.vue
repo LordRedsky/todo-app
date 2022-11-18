@@ -29,7 +29,6 @@ export default {
       let id = 0;
       if (this.todo_lists.length > 0) {
         id = this.todo_lists[this.todo_lists.length - 1].id;
-        console.log(this.todo_lists[this.todo_lists.length - 1].id, "<<<ID");
       }
       const data = {
         id: (id += 1),

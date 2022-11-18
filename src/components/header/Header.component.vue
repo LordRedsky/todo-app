@@ -7,7 +7,9 @@ export default {
 <template>
   <header>
     <div class="header-background" data-cy="header-background">
-      <div class="header-title" data-cy="header-title">TO DO LIST APP</div>
+      <div class="header-title" data-cy="header-title">
+        <p>TO DO LIST APP</p>
+      </div>
     </div>
   </header>
 </template>
@@ -19,9 +21,13 @@ header .header-background {
   height: 105px;
   display: flex;
   align-items: center;
-  padding: 10px 220px;
+  padding: 1vh 23%;
   font-weight: 700;
   color: #ffffff;
   font-size: 24px;
+}
+
+.header-title {
+max-width: 100%;
 }
 </style>
