@@ -33,7 +33,7 @@ export default {
       </button>
     </div>
     <!-- IF ACTIVITY EMPTY -->
-    <div class="empty-content" v-if="this.activities.length === 0">
+    <div class="empty-content" v-show="this.activities.length === 0">
       <img
         src="../assets/img/activity-empty-state.svg"
         alt="image-activity-empty-state"
