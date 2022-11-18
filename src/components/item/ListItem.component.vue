@@ -1,6 +1,6 @@
 <template>
-  <div class="list-items">
-    <div class="item">
+  <div class="list-items" data-cy="list-items">
+    <div class="item" data-cy="item">
       <!-- <i class="fa-regular fa-square"></i> -->
       <i class="fa-solid fa-square-check check"></i>
       <div class="detail-item">

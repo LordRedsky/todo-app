@@ -1,17 +1,21 @@
 <template>
-  <div class="delete-container">
-    <div class="alert-logo">
-      <img src="./assets/icon/modal-icon/modal-delete-icon.svg" alt="delete-icon" />
+  <div class="delete-container" data-cy="delete-container">
+    <div class="alert-logo" data-cy="alert-logo">
+      <img
+        src="./assets/icon/modal-icon/modal-delete-icon.svg"
+        alt="delete-icon"
+        data-cy="delete-icon"
+      />
     </div>
-    <div class="alert-message">
-      <p>
+    <div class="alert-message" data-cy="alert-message">
+      <p data-cy="message">
         Apakah anda yakin menghapus <span>activity</span><br />
         <span class="msg-bold">"Meeting dengan Client"?</span>
       </p>
     </div>
-    <div class="alert-button">
-      <button class="btn btn-cancel">Batal</button>
-      <button class="btn btn-delete">Hapus</button>
+    <div class="alert-button" data-cy="alert-btn">
+      <button class="btn btn-cancel" data-cy="btn-cancel">Batal</button>
+      <button class="btn btn-delete" data-cy="btn-delete">Hapus</button>
     </div>
   </div>
 </template>

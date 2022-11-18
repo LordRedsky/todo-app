@@ -6,8 +6,8 @@ export default {
 
 <template>
   <header>
-    <div class="header-background">
-      <div class="header-title">TO DO LIST APP</div>
+    <div class="header-background" data-cy="header-background">
+      <div class="header-title" data-cy="header-title">TO DO LIST APP</div>
     </div>
   </header>
 </template>

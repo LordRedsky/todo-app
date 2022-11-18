@@ -1,9 +1,23 @@
 <script>
+import { mapActions, mapState, mapWritableState } from "pinia";
 import ActivityCardComponent from "../components/card/ActivityCard.component.vue";
+import useActivityStore from "../stores/activity";
 
 export default {
   name: "Dashboard",
   components: { ActivityCardComponent },
+  methods: {
+    ...mapActions(useActivityStore, ["getActivity"]),
+  },
+  computed: {
+    ...mapWritableState(useActivityStore, ["activities"]),
+  },
+
+  Created() {
+    this.getActivity();
+  },
+
+
 };
 </script>
 
@@ -11,13 +25,13 @@ export default {
   <div class="container">
     <div class="todo-header">
       <h1>Activity</h1>
-      <button class="btn-add">
+      <button class="btn btn-add">
         <i class="fa-regular fa-plus"></i>
         Tambah
       </button>
     </div>
     <!-- IF ACTIVITY EMPTY -->
-    <div class="empty-content">
+    <div class="empty-content" v-if="this.activities.length === 0">
       <img
         src="../assets/img/activity-empty-state.svg"
         alt="image-activity-empty-state"
@@ -28,8 +42,4 @@ export default {
     <ActivityCardComponent />
   </div>
 </template>
-<style scoped>
-.dashboard-container {
-  padding: 10px 220px;
-}
-</style>
+<style scoped></style>

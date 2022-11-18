@@ -1,11 +1,12 @@
 <template>
-  <div class="alert-container">
-    <div class="alert">
+  <div class="alert-container" data-cy="alert-container">
+    <div class="alert" data-cy="alert">
       <img
         src="./assets/icon/modal-icon/modal-information-icon.svg"
         alt="information-icon"
+        data-cy="information-icon"
       />
-      <p>Activity berhasil dihapus</p>
+      <p data-cy="alert-message">Activity berhasil dihapus</p>
     </div>
   </div>
 </template>

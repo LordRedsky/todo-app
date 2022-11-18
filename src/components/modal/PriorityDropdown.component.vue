@@ -1,30 +1,31 @@
 <script>
+import { mapWritableState } from "pinia";
+import useTodoStore from "../../stores/todo";
 export default {
   name: "PriorityDropdown",
+  computed: {
+    ...mapWritableState(useTodoStore, ["priority_item", "selected"]),
+  },
+  methods: {
+    selectPriorityHandler(input) {
+      this.selected = input;
+    },
+  },
 };
 </script>
 
 <template>
   <ul class="options">
-    <li class="option selected">
-      <i style="color: #ed4c5c" class="fa-solid fa-circle"></i>
-      <span>Very Hight</span>
-    </li>
-    <li class="option">
-      <i style="color: #f8a541" class="fa-solid fa-circle"></i>
-      <span>Hight</span>
-    </li>
-    <li class="option">
-      <i style="color: #00a790" class="fa-solid fa-circle"></i>
-      Medium
-    </li>
-    <li class="option">
-      <i style="color: #428bc1" class="fa-solid fa-circle"></i>
-      Low
-    </li>
-    <li class="option">
-      <i style="color: #8942c1" class="fa-solid fa-circle"></i>
-      Very Low
+    <li
+      class="option"
+      v-for="(priority, index) in priority_item"
+      :key="index"
+      @click.prevent="
+        selectPriorityHandler({ title: `${priority.title}`, color: `${priority.color}` })
+      "
+    >
+      <i :style="`color: ${priority.color}`" class="fa-solid fa-circle"></i>
+      <span>{{ priority.title }}</span>
     </li>
   </ul>
 </template>

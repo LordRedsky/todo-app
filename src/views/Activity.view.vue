@@ -2,6 +2,8 @@
 import { mapWritableState } from "pinia";
 import ModalComponent from "../components/modal/Modal.component.vue";
 import useFormInputStore from "../stores/formInput";
+import useTodoStore from "../stores/todo";
+
 export default {
   name: "Activity",
   data() {
@@ -13,6 +15,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useFormInputStore, ["isOpen"]),
+    ...mapWritableState(useTodoStore, ["todo_lists"]),
   },
   methods: {
     sortDropdownMenuHandler() {
@@ -97,7 +100,7 @@ export default {
       <ModalComponent v-if="isOpen" />
 
       <!-- IF LIST ITEM EMPTY -->
-      <div class="empty-item">
+      <div class="empty-item" v-if="this.todo_lists.length === 0">
         <img src="../assets/img/todo-empty-state.svg" alt="image-todo-empty-state" />
       </div>
     </div>
@@ -136,5 +139,9 @@ export default {
 
 .sort-dropdown .sort-option:hover {
   background: #a2d5ee;
+}
+
+.empty-item img {
+  margin: 50px auto;
 }
 </style>
