@@ -1,5 +1,5 @@
 <script>
-import { mapWritableState } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 import ModalComponent from "../components/modal/Modal.component.vue";
 import useFormInputStore from "../stores/formInput";
 import useTodoStore from "../stores/todo";
@@ -11,15 +11,17 @@ export default {
     return {
       sort: false,
       isEmpty: false,
+      editTitle: "",
       // isOpen: false,
     };
   },
   computed: {
     ...mapWritableState(useFormInputStore, ["isOpen"]),
     ...mapWritableState(useTodoStore, ["todo_lists"]),
-    ...mapWritableState(useActivityStore, ["activities"]),
+    ...mapWritableState(useActivityStore, ["activities", "detailActivity"]),
   },
   methods: {
+    ...mapActions(useActivityStore, ["updateTitleActivity"]),
     sortDropdownMenuHandler() {
       this.sort = !this.sort;
     },
@@ -29,8 +31,10 @@ export default {
     },
   },
   components: { ModalComponent },
+  watch: {},
   created() {
     this.activities = [];
+    // this.editTitle = this.detailActivity.title;
   },
 };
 </script>
@@ -39,10 +43,12 @@ export default {
   <div class="container">
     <div class="detail-content">
       <div class="todo-header">
-        <h1 class="new-activity">
-          <RouterLink to="/"><i class="fa-solid fa-angle-left"></i></RouterLink> New
-          Activity
-        </h1>
+        <div class="new-activity">
+          <RouterLink to="/"><i class="fa-solid fa-angle-left"></i></RouterLink>
+          <span>{{ detailActivity.title }}</span>
+          <input type="text" >
+          <i class="fa-solid fa-pencil"></i>
+        </div>
 
         <div class="dropdown">
           <div>
@@ -113,6 +119,16 @@ export default {
 </template>
 
 <style scoped>
+.new-activity {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.new-activity .fa-pencil {
+  font-size: 30px;
+  margin-left: 20px;
+  color: #706969;
+}
 .sort-dropdown {
   position: absolute;
   display: flex;

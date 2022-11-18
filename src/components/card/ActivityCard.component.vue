@@ -2,6 +2,7 @@
 import { mapActions, mapWritableState } from "pinia";
 import useActivityStore from "../../stores/activity";
 import DeleteComponentVue from "../alert/Delete.component.vue";
+import AlertComponentVue from "../alert/Alert.component.vue";
 
 export default {
   name: "ActivityCard",
@@ -10,13 +11,18 @@ export default {
       "activities",
       "isOpenModal",
       "deletedActivityData",
+      "isAlertConfirm",
     ]),
   },
   methods: {
-    ...mapActions(useActivityStore, ["getActivity", "deleteActivity"]),
+    ...mapActions(useActivityStore, [
+      "getActivity",
+      "deleteActivity",
+      "getDetailActivity",
+    ]),
     moveToActivity(id) {
       this.$router.push({ path: `/activity/${id}` });
-      // this.activities = this.activities.reverse();
+      this.getDetailActivity(id);
     },
     deleteActivityHandler(id) {
       this.deleteActivity(id);
@@ -30,7 +36,7 @@ export default {
   created() {
     this.getActivity();
   },
-  components: { DeleteComponentVue },
+  components: { DeleteComponentVue, AlertComponentVue },
 };
 </script>
 
@@ -38,6 +44,7 @@ export default {
   <div class="dashboard-content" data-cy="dashboard-content">
     <!-- Has Activity -->
     <DeleteComponentVue v-if="isOpenModal" />
+    <AlertComponentVue v-if="isAlertConfirm" />
     <div class="activity-container" data-cy="activity-container">
       <div
         class="activity-card-container"

@@ -45,7 +45,10 @@ export default defineStore('activity', {
             created_at: ''
         },
         isOpenModal: false,
-        deletedActivityData: ""
+        deletedActivityData: "",
+        isAlertConfirm: false,
+        isEditTitle: false,
+        detailActivity: {}
     }),
     actions: {
         //* GET ACTIVITY
@@ -86,13 +89,43 @@ export default defineStore('activity', {
                 const response = await axios.delete(`${BASE_URL}/activity-groups/${deletedId}`, {
                     email: `${email}`,
                 })
+                this.isOpenModal = !this.isOpenModal
+
 
             } catch (error) {
                 console.log(error);
             } finally {
-                this.isOpenModal = !this.isOpenModal
+                setTimeout(() => {
+                    this.isAlertConfirm = !this.isAlertConfirm
+                }, 1000)
+                this.isAlertConfirm = !this.isAlertConfirm
                 this.activities = []
                 this.getActivity()
+            }
+        },
+
+        //* DETAIL ACTIVITY
+        async getDetailActivity(id) {
+            try {
+                const { data } = await axios.get(`${BASE_URL}/activity-groups/${id}`, {
+                    email: `${email}`,
+                })
+
+                this.detailActivity = data
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        //* UPDATE TITLE ACTIVITY (PATCH)
+        async updateTitleActivity(id, newTitle) {
+            try {
+                const response = await axios.patch(`${BASE_URL}/activity-groups/${id}`, {
+                    email: `${email}`,
+                    title: `${newTitle}`
+                })
+            } catch (error) {
+                console.log(error);
             }
         }
     }

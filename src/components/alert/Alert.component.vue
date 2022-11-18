@@ -2,7 +2,7 @@
   <div class="alert-container" data-cy="alert-container">
     <div class="alert" data-cy="alert">
       <img
-        src="./assets/icon/modal-icon/modal-information-icon.svg"
+        src="../../assets/icon/modal-icon/modal-information-icon.svg"
         alt="information-icon"
         data-cy="information-icon"
       />
@@ -20,6 +20,7 @@ export default {
 <style scoped>
 /* ALERT */
 .alert-container {
+  position: absolute;
   display: flex;
   justify-content: flex-start;
   align-items: center;
